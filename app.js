@@ -2,8 +2,14 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
+<<<<<<< Updated upstream
 const { campgroundSchema, reviewsSchema } = require("./schemas.js");
 const catchAsync = require("./utils/catchAsync");
+=======
+const session = require("express-session");
+const flash = require("connect-flash");
+
+>>>>>>> Stashed changes
 const ExpressError = require("./utils/ExpressError");
 const Campground = require("./models/campground");
 const Review = require("./models/review.js");
@@ -28,6 +34,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
+<<<<<<< Updated upstream
 const validateCampground = (req, res, next) => {
   const { error } = campgroundSchema.validate(req.body);
   if (error) {
@@ -48,6 +55,29 @@ const validateReview = (req, res, next) => {
   }
 };
 
+=======
+app.use(express.static(path.join(__dirname, "public")));
+const sessionConfig = {
+  secret: "thisshouldbeabettersecret!",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+  },
+};
+app.use(session(sessionConfig));
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  next();
+});
+
+app.use("/campgrounds", campgrounds);
+app.use("/campgrounds/:id/reviews", reviews);
+>>>>>>> Stashed changes
 app.get("/", (req, res) => {
   res.render("home");
 });
