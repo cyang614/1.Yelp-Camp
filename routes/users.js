@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const passport = require("passport");
 const catchAsync = require("../utils/catchAsync");
 const User = require("../models/user");
 
@@ -30,7 +31,21 @@ router.post(
     failureFlash: true,
     failureRedirect: "/login",
   }),
-  async (req, res) => {}
+  async (req, res) => {
+    req.flash("success", "登入成功!");
+    res.redirect("/campgrounds");
+  }
 );
+
+router.get("/logout", (req, res) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    } else {
+      req.flash("success", "已登出帳號!");
+      res.redirect("/campgrounds");
+    }
+  });
+});
 
 module.exports = router;
