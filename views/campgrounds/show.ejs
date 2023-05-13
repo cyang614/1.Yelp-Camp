@@ -9,8 +9,10 @@
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item text-muted"><%= c.location %></li>
+        <li class="list-group-item">用戶: <%= c.author.username %></li>
         <li class="list-group-item">$<%= c.price %>/night</li>
       </ul>
+      <%if(currentUser && c.author.equals(currentUser)){%>
       <div class="card-body">
         <a class="card-link btn btn-info" href="/campgrounds/<%= c._id %>/edit"
           >編輯</a
@@ -23,10 +25,12 @@
           <button class="btn btn-danger">刪除</button>
         </form>
       </div>
+      <% } %>
       <div class="card-footer text-muted">2 days ago</div>
     </div>
   </div>
   <div class="col-6">
+    <% if(currentUser){ %>
     <h2>留下評論:</h2>
     <form
       method="post"
@@ -59,11 +63,15 @@
       </div>
       <button class="btn btn-success">送出</button>
     </form>
-    <%for(let review of c.reviews){ %>
+    <% } %> <%for(let review of c.reviews){ %>
     <div class="card mb-3">
       <div class="card-body">
         <h5 class="card-title">星級: <%= review.rating %></h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+          評論者: <%=review.author.username %>
+        </h6>
         <p class="card-text">評論: <%= review.body %></p>
+
         <form
           method="post"
           action="/campgrounds/<%= c._id %>/reviews/<%= review._id %>?_method=DELETE"
