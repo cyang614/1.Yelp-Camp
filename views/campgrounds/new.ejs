@@ -2,7 +2,13 @@
 <div class="row">
   <h1 class="text-center">新增露營地</h1>
   <div class="col-6 offset-3">
-    <form action="/campgrounds" method="post" novalidate class="validated-form">
+    <form
+      action="/campgrounds"
+      method="post"
+      novalidate
+      class="validated-form"
+      enctype="multipart/form-data"
+    >
       <div class="mb-3">
         <label class="form-label" for="title">標題</label>
         <input
@@ -25,7 +31,8 @@
         />
         <div class="valid-feedback">Looks Good!</div>
       </div>
-      <div class="mb-3">
+      <input type="file" name="image" id="" multiple />
+      <!-- <div class="mb-3">
         <label class="form-label" for="image">圖片網址</label>
         <input
           class="form-control"
@@ -35,7 +42,7 @@
           required
         />
         <div class="valid-feedback">Looks Good!</div>
-      </div>
+      </div> -->
       <div class="mb-3">
         <label class="form-label" for="price">價格</label>
         <div class="input-group">
