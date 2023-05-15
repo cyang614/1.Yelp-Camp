@@ -33,16 +33,14 @@
         <div class="valid-feedback">Looks Good!</div>
       </div>
       <div class="mb-3">
-        <label class="form-label" for="image">圖片網址</label>
+        <label class="form-label" for="image">上傳圖檔</label>
         <input
           class="form-control"
-          type="text"
+          type="file"
+          name="image"
           id="image"
-          name="campground[image]"
-          value="<%= campground.image %>"
-          required
+          multiple
         />
-        <div class="valid-feedback">Looks Good!</div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="price">價格</label>

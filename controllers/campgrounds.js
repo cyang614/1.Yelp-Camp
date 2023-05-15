@@ -10,8 +10,11 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createCampground = async (req, res, next) => {
-  // if (!req.body.campground) throw new Express("Invalid Campground data", 400);
   const campground = new Campground(req.body.campground);
+  campground.image = req.files.map((f) => ({
+    url: f.path,
+    filename: f.filename,
+  }));
   campground.author = req.user._id;
   await campground.save();
   req.flash("success", "新增完成!");
@@ -42,13 +45,20 @@ module.exports.renderEditCampground = async (req, res) => {
 module.exports.editCampground = async (req, res) => {
   const { id } = req.params;
 
-  const camp = await Campground.findByIdAndUpdate(
+  const campground = await Campground.findByIdAndUpdate(
     id,
     {
       ...req.body.campground,
     },
     { new: true }
   );
+  const imgs = req.files.map((f) => ({
+    url: f.path,
+    filename: f.filename,
+  }));
+  campground.images.push(...imgs);
+  console.log(campground.images);
+  await campground.save();
   req.flash("success", "編輯成功!");
   res.redirect(`/campgrounds/${camp._id}`);
 };
