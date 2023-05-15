@@ -7,6 +7,7 @@
       method="post"
       novalidate
       class="validated-form"
+      enctype="multipart/form-data"
     >
       <div class="mb-3">
         <label class="form-label" for="title">標題</label>
@@ -72,6 +73,20 @@
         <%= campground.description %>
         </textarea>
         <div class="valid-feedback">Looks Good!</div>
+      </div>
+      <div class="mb-3">
+        <% campground.image.forEach(function(img,i){%>
+        <img src=" <%= img.url  %>" class="img-thumbnail" alt="" />
+        <div class="form-check-inline">
+          <input
+            type="checkbox"
+            id="image-<%= i %>"
+            name="deleteImages[]"
+            value="<%= img.filename %>"
+          />
+        </div>
+        <label for="image-<%= i %>">Delete</label>
+        <%}) %>
       </div>
       <div class="mb-3">
         <button class="btn btn-info">存檔</button>
