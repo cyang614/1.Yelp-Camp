@@ -64,6 +64,7 @@
     </div>
   </div>
   <div class="col-6">
+    <div id="map" style="width: 635px; height: 400px"></div>
     <% if(currentUser){ %>
     <h2>留下評論:</h2>
     <form
@@ -155,3 +156,9 @@
     <%}%>
   </div>
 </div>
+
+<script>
+  const mapToken = "<%-process.env.MAPBOX_TOKEN %>";
+  const campground = <%-JSON.stringify(c)%>;
+</script>
+<script src="/javascripts/showMap.js"></script>
