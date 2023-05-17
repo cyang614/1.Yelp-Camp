@@ -1,32 +1,59 @@
 <% layout('layouts/boilerplate') %>
-<h1>用戶註冊</h1>
-<form method="post" action="/register" class="validated-form" novalidate>
-  <div class="mb-3">
-    <label class="form-label" for="username">Email</label>
-    <input class="form-control" type="email" id="email" name="email" required />
-    <div class="valid-feedback">Looks Good!</div>
+<div class="container justify-content-center align-items-center mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+      <div class="card shadow">
+        <img
+          src="https://pbs.twimg.com/media/Ft_w_TlaMAE4tLO?format=jpg&name=4096x4096"
+          alt=""
+          class="card-img-top"
+        />
+        <div class="card-body">
+          <h5 class="card-title">會員註冊</h5>
+          <form
+            method="post"
+            action="/register"
+            class="validated-form"
+            novalidate
+          >
+            <div class="mb-3">
+              <label class="form-label" for="username">Email</label>
+              <input
+                class="form-control"
+                type="email"
+                id="email"
+                name="email"
+                required
+                autofocus
+              />
+              <div class="valid-feedback">Looks Good!</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="username">用戶名稱</label>
+              <input
+                class="form-control"
+                type="text"
+                id="username"
+                name="username"
+                required
+              />
+              <div class="valid-feedback">Looks Good!</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="password">密碼</label>
+              <input
+                class="form-control"
+                type="password"
+                id="password"
+                name="password"
+                required
+              />
+              <div class="valid-feedback">Looks Good!</div>
+            </div>
+            <button class="btn btn-success col-12">註冊</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="mb-3">
-    <label class="form-label" for="username">用戶名稱</label>
-    <input
-      class="form-control"
-      type="text"
-      id="username"
-      name="username"
-      required
-    />
-    <div class="valid-feedback">Looks Good!</div>
-  </div>
-  <div class="mb-3">
-    <label class="form-label" for="password">密碼</label>
-    <input
-      class="form-control"
-      type="password"
-      id="password"
-      name="password"
-      required
-    />
-    <div class="valid-feedback">Looks Good!</div>
-  </div>
-  <button class="btn btn-success">註冊</button>
-</form>
+</div>
