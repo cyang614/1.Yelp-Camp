@@ -2,7 +2,9 @@ const mongoose = require("mongoose");
 const cities = require("./citites");
 const { places, descriptors } = require("./seedHelpers");
 const Campground = require(".././models/campground");
-mongoose.connect("mongodb://127.0.0.1:27017/yelp-camp");
+mongoose.connect(
+  "mongodb://mongo:9FLfIscYOihxbo2ebEBP@containers-us-west-123.railway.app:7522"
+);
 
 mongoose.connection.on(
   "error",
